@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter (lib/QrGenerator/qr_scan_page.dart)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/QrGenerator/qr_scan_page.dart"
+        }
+    ]
+}
