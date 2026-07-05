@@ -33,10 +33,11 @@ class QrGeneratorPage extends StatelessWidget {
                 title: 'Contact QR Code',
                 icon: Icons.contacts_rounded,
                 description: 'Generate a QR code with your contact details',
-                onTap: () => Navigator.push(
+                onTap: () => Navigator.push<void>(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const ContactQrPage(),),
+                  MaterialPageRoute<void>(
+                    builder: (context) => const ContactQrPage(),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -44,9 +45,10 @@ class QrGeneratorPage extends StatelessWidget {
                 title: 'Website URL',
                 icon: Icons.link_rounded,
                 description: 'Generate a QR code for a web link',
-                onTap: () => Navigator.push(
+                onTap: () => Navigator.push<void>(
                   context,
-                  MaterialPageRoute(builder: (context) => const UrlQrPage()),
+                  MaterialPageRoute<void>(
+                      builder: (context) => const UrlQrPage()),
                 ),
               ),
               const SizedBox(height: 8),
@@ -54,9 +56,10 @@ class QrGeneratorPage extends StatelessWidget {
                 title: 'Custom Text',
                 icon: Icons.text_fields_rounded,
                 description: 'Generate a QR code containing custom text',
-                onTap: () => Navigator.push(
+                onTap: () => Navigator.push<void>(
                   context,
-                  MaterialPageRoute(builder: (context) => const TextQrPage()),
+                  MaterialPageRoute<void>(
+                      builder: (context) => const TextQrPage()),
                 ),
               ),
             ],

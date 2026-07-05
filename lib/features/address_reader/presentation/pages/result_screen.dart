@@ -44,7 +44,8 @@ class ResultScreen extends StatelessWidget {
                       Text(
                         'Extracted Text',
                         style: theme.textTheme.titleMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                          color: theme.colorScheme.onSurface
+                              .withValues(alpha: 0.6),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -53,11 +54,14 @@ class ResultScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: theme.colorScheme.surface,
                           border: Border.all(
-                              color: theme.colorScheme.primary, width: 2,),
+                            color: theme.colorScheme.primary,
+                            width: 2,
+                          ),
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
-                              color: theme.colorScheme.primary.withValues(alpha: 0.1),
+                              color: theme.colorScheme.primary
+                                  .withValues(alpha: 0.1),
                               blurRadius: 10,
                               spreadRadius: 2,
                             ),
@@ -94,7 +98,8 @@ class ResultScreen extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   side: BorderSide(color: theme.colorScheme.primary),
                 ),
                 onPressed: () => Navigator.pop(context),

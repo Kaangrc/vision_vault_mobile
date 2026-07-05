@@ -3,8 +3,7 @@ import 'package:vision_vault_mobile/core/network/websocket_client.dart';
 import 'package:vision_vault_mobile/features/dashboard/domain/repositories/analytics_repository.dart';
 
 class WebsocketAnalyticsRepository implements AnalyticsRepository {
-
-  WebsocketAnalyticsRepository({WebSocketClient? client}) 
+  WebsocketAnalyticsRepository({WebSocketClient? client})
       : _client = client ?? WebSocketClient();
   final WebSocketClient _client;
 
@@ -13,7 +12,7 @@ class WebsocketAnalyticsRepository implements AnalyticsRepository {
     // In a real app, this would be wss://api.yourdomain.com/analytics/live
     // For this showcase, we connect to a public echo server and simulate
     _client.connect('wss://echo.websocket.events');
-    
+
     // Simulate incoming data to the echo server
     Timer.periodic(const Duration(seconds: 3), (timer) {
       _client.send({

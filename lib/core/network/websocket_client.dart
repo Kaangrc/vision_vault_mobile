@@ -5,7 +5,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 /// A wrapper around WebSocketChannel to handle real-time connections.
 class WebSocketClient {
   WebSocketChannel? _channel;
-  StreamSubscription? _subscription;
+  StreamSubscription<dynamic>? _subscription;
   final _streamController = StreamController<Map<String, dynamic>>.broadcast();
 
   Stream<Map<String, dynamic>> get stream => _streamController.stream;
@@ -22,7 +22,7 @@ class WebSocketClient {
             // Silently ignore invalid JSON
           }
         },
-        onError: (error) {
+        onError: (Object error) {
           _streamController.addError(error);
         },
         onDone: () {

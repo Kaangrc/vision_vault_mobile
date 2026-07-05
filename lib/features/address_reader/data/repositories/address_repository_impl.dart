@@ -5,15 +5,19 @@ import 'package:vision_vault_mobile/features/address_reader/domain/repositories/
 import 'package:vision_vault_mobile/features/plate_ocr/data/datasources/plate_remote_datasource.dart';
 
 class AddressRepositoryImpl implements AddressRepository {
-
   AddressRepositoryImpl({required this.remoteDataSource});
   final PlateRemoteDataSource remoteDataSource;
 
   @override
   Future<Either<Failure, String?>> extractAddressFromCameraImage(
-      CameraImage image, CameraController controller,) async {
+    CameraImage image,
+    CameraController controller,
+  ) async {
     try {
-      final text = await remoteDataSource.recognizeTextFromCameraImage(image, controller);
+      final text = await remoteDataSource.recognizeTextFromCameraImage(
+        image,
+        controller,
+      );
 
       if (text.isEmpty) {
         return const Right(null);
@@ -26,7 +30,7 @@ class AddressRepositoryImpl implements AddressRepository {
 
       return const Right(null);
     } catch (e) {
-      return Left(ServerFailure('Failed to extract address: $e'));
+      return Left(ServerFailure(message: 'Failed to extract address: $e'));
     }
   }
 }

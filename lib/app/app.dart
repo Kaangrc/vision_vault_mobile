@@ -10,7 +10,8 @@ class VisionVaultApp extends StatefulWidget {
   State<VisionVaultApp> createState() => _VisionVaultAppState();
 }
 
-class _VisionVaultAppState extends State<VisionVaultApp> with WidgetsBindingObserver {
+class _VisionVaultAppState extends State<VisionVaultApp>
+    with WidgetsBindingObserver {
   bool _isBackground = false;
 
   @override
@@ -28,8 +29,8 @@ class _VisionVaultAppState extends State<VisionVaultApp> with WidgetsBindingObse
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     setState(() {
-      _isBackground = state == AppLifecycleState.inactive || 
-                      state == AppLifecycleState.paused;
+      _isBackground = state == AppLifecycleState.inactive ||
+          state == AppLifecycleState.paused;
     });
   }
 

@@ -74,7 +74,8 @@ class _TextQrViewState extends State<TextQrView> {
                   backgroundColor: Theme.of(context).colorScheme.error,
                   behavior: SnackBarBehavior.floating,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               );
             }
@@ -111,7 +112,9 @@ class _TextQrViewState extends State<TextQrView> {
                               height: 20,
                               width: 20,
                               child: CircularProgressIndicator(
-                                  strokeWidth: 2, color: Colors.white,),
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
                             )
                           : const Text('Generate QR Code'),
                     ),

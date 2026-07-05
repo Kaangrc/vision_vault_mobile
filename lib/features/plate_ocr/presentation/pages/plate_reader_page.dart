@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +9,6 @@ import 'package:vision_vault_mobile/features/plate_ocr/data/repositories/plate_r
 import 'package:vision_vault_mobile/features/plate_ocr/presentation/bloc/plate_ocr_cubit.dart';
 import 'package:vision_vault_mobile/features/plate_ocr/presentation/bloc/plate_ocr_state.dart';
 import 'package:vision_vault_mobile/features/plate_ocr/presentation/pages/car_result.dart';
-import 'dart:async';
 
 class PlateReaderPage extends StatelessWidget {
   const PlateReaderPage({super.key});
@@ -62,9 +63,13 @@ class _PlateReaderViewState extends State<_PlateReaderView> {
         _cameraController = controller;
       });
 
-      unawaited(_cameraController?.startImageStream((image) {
-        context.read<PlateOcrCubit>().processCameraImage(image, _cameraController!);
-      }));
+      unawaited(
+        _cameraController?.startImageStream((image) {
+          context
+              .read<PlateOcrCubit>()
+              .processCameraImage(image, _cameraController!);
+        }),
+      );
     } catch (e) {
       debugPrint('Error initializing camera: $e');
     }
@@ -149,7 +154,7 @@ class _PlateReaderViewState extends State<_PlateReaderView> {
 
   Widget _buildOverlay(BuildContext context, PlateOcrState state) {
     final isProcessing = state is PlateOcrProcessing;
-    
+
     return Stack(
       children: [
         ColorFiltered(
@@ -183,8 +188,8 @@ class _PlateReaderViewState extends State<_PlateReaderView> {
             height: 150,
             decoration: BoxDecoration(
               border: Border.all(
-                color: isProcessing 
-                    ? Theme.of(context).colorScheme.primary 
+                color: isProcessing
+                    ? Theme.of(context).colorScheme.primary
                     : Colors.white.withValues(alpha: 0.5),
                 width: 3,
               ),
@@ -193,7 +198,10 @@ class _PlateReaderViewState extends State<_PlateReaderView> {
             child: isProcessing
                 ? Shimmer.fromColors(
                     baseColor: Colors.transparent,
-                    highlightColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
+                    highlightColor: Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withValues(alpha: 0.5),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -210,7 +218,9 @@ class _PlateReaderViewState extends State<_PlateReaderView> {
           right: 0,
           child: Center(
             child: Text(
-              isProcessing ? 'Analyzing Frame...' : 'Position plate in the frame',
+              isProcessing
+                  ? 'Analyzing Frame...'
+                  : 'Position plate in the frame',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,

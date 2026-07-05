@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vision_vault_mobile/app/routes/app_routes.dart';
-import 'dart:async';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -18,12 +19,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final List<Map<String, String>> _pages = [
     {
       'title': 'Intelligent OCR Engine',
-      'description': 'Real-time ML Kit license plate and address text extraction.',
+      'description':
+          'Real-time ML Kit license plate and address text extraction.',
       'icon': 'camera_alt_rounded',
     },
     {
       'title': 'Secured Vault',
-      'description': 'Your data is protected by biometric access and active lifecycle guards.',
+      'description':
+          'Your data is protected by biometric access and active lifecycle guards.',
       'icon': 'security_rounded',
     },
     {
@@ -35,15 +38,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   IconData _getIcon(String iconName) {
     switch (iconName) {
-      case 'camera_alt_rounded': return Icons.camera_alt_rounded;
-      case 'security_rounded': return Icons.security_rounded;
-      case 'analytics_rounded': return Icons.analytics_rounded;
-      default: return Icons.info;
+      case 'camera_alt_rounded':
+        return Icons.camera_alt_rounded;
+      case 'security_rounded':
+        return Icons.security_rounded;
+      case 'analytics_rounded':
+        return Icons.analytics_rounded;
+      default:
+        return Icons.info;
     }
   }
 
   Future<void> _completeOnboarding() async {
-    HapticFeedback.lightImpact();
+    unawaited(HapticFeedback.lightImpact());
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('seen_onboarding', true);
     if (!mounted) return;
@@ -96,7 +103,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       page['description']!,
                       textAlign: TextAlign.center,
                       style: theme.textTheme.bodyLarge?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                        color:
+                            theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -133,15 +141,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     if (_currentPage == _pages.length - 1) {
                       _completeOnboarding();
                     } else {
-                      unawaited(_controller.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      ));
+                      unawaited(
+                        _controller.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        ),
+                      );
                     }
                   },
                   backgroundColor: theme.colorScheme.primary,
                   child: Icon(
-                    _currentPage == _pages.length - 1 ? Icons.check : Icons.arrow_forward,
+                    _currentPage == _pages.length - 1
+                        ? Icons.check
+                        : Icons.arrow_forward,
                     color: theme.colorScheme.onPrimary,
                   ),
                 ),

@@ -20,7 +20,6 @@ final class AuthAuthenticated extends AuthState {
 }
 
 final class AuthFailure extends AuthState {
-
   const AuthFailure(this.message);
   final String message;
 

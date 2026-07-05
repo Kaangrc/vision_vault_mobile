@@ -16,7 +16,6 @@ final class PlateOcrProcessing extends PlateOcrState {
 }
 
 final class PlateOcrSuccess extends PlateOcrState {
-
   const PlateOcrSuccess(this.plateText);
   final String plateText;
 
@@ -25,7 +24,6 @@ final class PlateOcrSuccess extends PlateOcrState {
 }
 
 final class PlateOcrFailure extends PlateOcrState {
-
   const PlateOcrFailure(this.message);
   final String message;
 

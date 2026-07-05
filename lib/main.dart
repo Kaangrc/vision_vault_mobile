@@ -5,8 +5,6 @@ import 'package:vision_vault_mobile/app/app.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  
-
   Bloc.observer = AppBlocObserver();
 
   runApp(const VisionVaultApp());

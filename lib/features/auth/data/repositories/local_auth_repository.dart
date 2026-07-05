@@ -4,7 +4,6 @@ import 'package:vision_vault_mobile/core/error/failures.dart';
 import 'package:vision_vault_mobile/features/auth/domain/repositories/auth_repository.dart';
 
 class LocalAuthRepository implements AuthRepository {
-
   LocalAuthRepository({LocalAuthentication? auth})
       : _auth = auth ?? LocalAuthentication();
   final LocalAuthentication _auth;
@@ -36,7 +35,9 @@ class LocalAuthRepository implements AuthRepository {
       }
     } catch (e) {
       // In a real application, handle specific PlatformExceptions
-      return const Left(CacheFailure(message: 'Authentication exception occurred'));
+      return const Left(
+        CacheFailure(message: 'Authentication exception occurred'),
+      );
     }
   }
 }

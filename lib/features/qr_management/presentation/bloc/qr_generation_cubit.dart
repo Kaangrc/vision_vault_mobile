@@ -6,13 +6,16 @@ class QrGenerationCubit extends Cubit<QrGenerationState> {
 
   void generateTextQr(String text) {
     if (text.trim().isEmpty) {
-      emit(const QrGenerationFailure(
-          errorMessage: 'Text field cannot be empty.',),);
+      emit(
+        const QrGenerationFailure(
+          errorMessage: 'Text field cannot be empty.',
+        ),
+      );
       return;
     }
 
     emit(const QrValidating());
-    
+
     Future.delayed(const Duration(milliseconds: 300), () {
       emit(QrGenerationSuccess(qrData: text.trim()));
     });
@@ -20,12 +23,14 @@ class QrGenerationCubit extends Cubit<QrGenerationState> {
 
   void generateUrlQr(String url) {
     if (url.trim().isEmpty) {
-      emit(const QrGenerationFailure(
-          errorMessage: 'URL field cannot be empty.',),);
+      emit(
+        const QrGenerationFailure(
+          errorMessage: 'URL field cannot be empty.',
+        ),
+      );
       return;
     }
 
-    
     final urlPattern = RegExp(
       r'^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',
       caseSensitive: false,
@@ -33,7 +38,8 @@ class QrGenerationCubit extends Cubit<QrGenerationState> {
 
     if (!urlPattern.hasMatch(url.trim())) {
       emit(
-          const QrGenerationFailure(errorMessage: 'Please enter a valid URL.'),);
+        const QrGenerationFailure(errorMessage: 'Please enter a valid URL.'),
+      );
       return;
     }
 
@@ -49,14 +55,16 @@ class QrGenerationCubit extends Cubit<QrGenerationState> {
     required String email,
   }) {
     if (name.trim().isEmpty || phone.trim().isEmpty) {
-      emit(const QrGenerationFailure(
-          errorMessage: 'Name and Phone are required.',),);
+      emit(
+        const QrGenerationFailure(
+          errorMessage: 'Name and Phone are required.',
+        ),
+      );
       return;
     }
 
     emit(const QrValidating());
     Future.delayed(const Duration(milliseconds: 300), () {
-      
       final vCard = '''
 BEGIN:VCARD
 VERSION:3.0

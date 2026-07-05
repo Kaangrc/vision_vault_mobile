@@ -5,7 +5,7 @@ class QrScanPage extends StatefulWidget {
   const QrScanPage({super.key});
 
   @override
-  _QrScanPageState createState() => _QrScanPageState();
+  State<QrScanPage> createState() => _QrScanPageState();
 }
 
 class _QrScanPageState extends State<QrScanPage> {
@@ -40,9 +40,8 @@ class _QrScanPageState extends State<QrScanPage> {
                       controller.stopCamera();
                     });
                   },
-                  onError: (error) {
-                    
-                    print('Error scanning QR code: $error');
+                  onError: (Object error) {
+                    debugPrint('Error scanning QR: $error');
                   },
                 );
               },
@@ -74,7 +73,6 @@ class _QrScanPageState extends State<QrScanPage> {
                             const SizedBox(height: 10),
                             ElevatedButton(
                               onPressed: () {
-                                
                                 _controller?.resumeCamera();
                                 setState(() {
                                   _qrResult = null;

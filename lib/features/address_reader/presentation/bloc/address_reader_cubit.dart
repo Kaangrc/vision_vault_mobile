@@ -4,18 +4,21 @@ import 'package:vision_vault_mobile/features/address_reader/domain/repositories/
 import 'package:vision_vault_mobile/features/address_reader/presentation/bloc/address_reader_state.dart';
 
 class AddressReaderCubit extends Cubit<AddressReaderState> {
-
   AddressReaderCubit(this._repository) : super(const AddressReaderInitial());
   final AddressRepository _repository;
 
-  Future<void> processCameraImage(CameraImage image, CameraController controller) async {
+  Future<void> processCameraImage(
+    CameraImage image,
+    CameraController controller,
+  ) async {
     if (state is AddressReaderProcessing || state is AddressReaderSuccess) {
       return;
     }
 
     emit(const AddressReaderProcessing());
 
-    final result = await _repository.extractAddressFromCameraImage(image, controller);
+    final result =
+        await _repository.extractAddressFromCameraImage(image, controller);
 
     result.fold(
       (failure) {

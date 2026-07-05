@@ -4,11 +4,13 @@ import 'package:vision_vault_mobile/features/plate_ocr/domain/repositories/plate
 import 'package:vision_vault_mobile/features/plate_ocr/presentation/bloc/plate_ocr_state.dart';
 
 class PlateOcrCubit extends Cubit<PlateOcrState> {
-
   PlateOcrCubit(this._repository) : super(const PlateOcrInitial());
   final PlateRepository _repository;
 
-  Future<void> processCameraImage(CameraImage image, CameraController controller) async {
+  Future<void> processCameraImage(
+    CameraImage image,
+    CameraController controller,
+  ) async {
     if (state is PlateOcrProcessing || state is PlateOcrSuccess) return;
 
     emit(const PlateOcrProcessing());

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +9,6 @@ import 'package:vision_vault_mobile/features/dashboard/data/repositories/websock
 import 'package:vision_vault_mobile/features/dashboard/presentation/bloc/dashboard_cubit.dart';
 import 'package:vision_vault_mobile/features/dashboard/presentation/bloc/dashboard_state.dart';
 import 'package:vision_vault_mobile/features/qr_management/presentation/widgets/feature_card.dart';
-import 'dart:async';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -15,7 +16,8 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DashboardCubit(WebsocketAnalyticsRepository())..connectToLiveMetrics(),
+      create: (context) => DashboardCubit(WebsocketAnalyticsRepository())
+        ..connectToLiveMetrics(),
       child: const _DashboardView(),
     );
   }
@@ -29,8 +31,6 @@ class _DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<_DashboardView> {
-  DateTimeRange? _selectedDateRange;
-
   Future<void> _pickDateRange() async {
     unawaited(HapticFeedback.lightImpact());
     final picked = await showDateRangePicker(
@@ -41,15 +41,15 @@ class _DashboardViewState extends State<_DashboardView> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: Theme.of(context).colorScheme.secondary,
-            ),
+                  primary: Theme.of(context).colorScheme.secondary,
+                ),
           ),
           child: child!,
         );
       },
     );
     if (picked != null) {
-      setState(() => _selectedDateRange = picked);
+      // _selectedDateRange = picked;
     }
   }
 
@@ -86,17 +86,16 @@ class _DashboardViewState extends State<_DashboardView> {
                 ),
               ),
               const SizedBox(height: 24),
-              
               BlocBuilder<DashboardCubit, DashboardState>(
                 builder: (context, state) {
                   var activeScanners = 0;
-                  var successRate = 0;
-                  
+                  double successRate = 0;
+
                   if (state is DashboardLive) {
                     activeScanners = state.activeScanners;
                     successRate = state.successRate;
                   }
-                  
+
                   return GridView.count(
                     crossAxisCount: 2,
                     crossAxisSpacing: 16,
@@ -114,7 +113,9 @@ class _DashboardViewState extends State<_DashboardView> {
                       _buildMetricCard(
                         context,
                         'Success Rate',
-                        state is DashboardLoading ? '...' : '${successRate.toStringAsFixed(1)}%',
+                        state is DashboardLoading
+                            ? '...'
+                            : '${successRate.toStringAsFixed(1)}%',
                         Icons.check_circle_outline,
                         Colors.green,
                       ),
@@ -136,7 +137,6 @@ class _DashboardViewState extends State<_DashboardView> {
                   );
                 },
               ),
-              
               const SizedBox(height: 40),
               Text(
                 'Processing Success Trend',
@@ -161,14 +161,16 @@ class _DashboardViewState extends State<_DashboardView> {
                 title: 'New QR Code',
                 description: 'Generate standard and secure QR structures.',
                 icon: Icons.qr_code_scanner,
-                onTap: () => Navigator.pushNamed(context, AppRoutes.qrGenerator),
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.qrGenerator),
               ),
               const SizedBox(height: 12),
               FeatureCard(
                 title: 'Scan Plate (OCR)',
                 description: 'Utilize ML Kit for rapid plate recognition.',
                 icon: Icons.camera_alt_outlined,
-                onTap: () => Navigator.pushNamed(context, AppRoutes.plateReader),
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.plateReader),
               ),
             ],
           ),

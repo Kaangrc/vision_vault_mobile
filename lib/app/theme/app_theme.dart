@@ -23,7 +23,9 @@ class AppTheme {
         bodyLarge: GoogleFonts.inter(color: AppColors.textDark),
         bodyMedium: GoogleFonts.inter(color: AppColors.textDark),
         displayLarge: GoogleFonts.inter(
-            color: AppColors.textDark, fontWeight: FontWeight.bold,),
+          color: AppColors.textDark,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       cardTheme: CardThemeData(
         color: Colors.white,
@@ -67,7 +69,9 @@ class AppTheme {
         bodyLarge: GoogleFonts.inter(color: AppColors.textLight),
         bodyMedium: GoogleFonts.inter(color: AppColors.textLight),
         displayLarge: GoogleFonts.inter(
-            color: AppColors.textLight, fontWeight: FontWeight.bold,),
+          color: AppColors.textLight,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       cardTheme: CardThemeData(
         color: AppColors.surfaceDark,

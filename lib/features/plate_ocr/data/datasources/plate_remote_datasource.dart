@@ -6,7 +6,9 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 
 abstract class PlateRemoteDataSource {
   Future<String> recognizeTextFromCameraImage(
-      CameraImage cameraImage, CameraController controller,);
+    CameraImage cameraImage,
+    CameraController controller,
+  );
   void dispose();
 }
 
@@ -15,21 +17,26 @@ class PlateRemoteDataSourceImpl implements PlateRemoteDataSource {
 
   @override
   Future<String> recognizeTextFromCameraImage(
-      CameraImage cameraImage, CameraController controller,) async {
+    CameraImage cameraImage,
+    CameraController controller,
+  ) async {
     final inputImage = _convertCameraImageToInputImage(cameraImage, controller);
     final recognizedText = await _textRecognizer.processImage(inputImage);
 
-    var text = '';
+    final buffer = StringBuffer();
     for (final block in recognizedText.blocks) {
       for (final line in block.lines) {
-        text += '${line.text}\n';
+        buffer.writeln(line.text);
       }
     }
-    return text;
+
+    return buffer.toString();
   }
 
   InputImage _convertCameraImageToInputImage(
-      CameraImage cameraImage, CameraController controller,) {
+    CameraImage cameraImage,
+    CameraController controller,
+  ) {
     final allBytes = WriteBuffer();
     for (final plane in cameraImage.planes) {
       allBytes.putUint8List(plane.bytes);

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +9,6 @@ import 'package:vision_vault_mobile/features/address_reader/presentation/bloc/ad
 import 'package:vision_vault_mobile/features/address_reader/presentation/bloc/address_reader_state.dart';
 import 'package:vision_vault_mobile/features/address_reader/presentation/pages/result_screen.dart';
 import 'package:vision_vault_mobile/features/plate_ocr/data/datasources/plate_remote_datasource.dart';
-import 'dart:async';
 
 class AddressReaderPage extends StatelessWidget {
   const AddressReaderPage({super.key});
@@ -64,9 +65,13 @@ class _AddressReaderViewState extends State<_AddressReaderView> {
         _cameraController = controller;
       });
 
-      unawaited(_cameraController?.startImageStream((image) {
-        context.read<AddressReaderCubit>().processCameraImage(image, _cameraController!);
-      }));
+      unawaited(
+        _cameraController?.startImageStream((image) {
+          context
+              .read<AddressReaderCubit>()
+              .processCameraImage(image, _cameraController!);
+        }),
+      );
     } catch (e) {
       debugPrint('Error initializing camera: $e');
     }
@@ -114,8 +119,8 @@ class _AddressReaderViewState extends State<_AddressReaderView> {
             _cameraController?.stopImageStream();
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(
-                builder: (context) => ResultScreen(text: state.addressText),
+              MaterialPageRoute<void>(
+                builder: (context) => ResultScreen(address: state.addressText),
               ),
             );
           } else if (state is AddressReaderFailure) {
@@ -185,8 +190,8 @@ class _AddressReaderViewState extends State<_AddressReaderView> {
             height: 250,
             decoration: BoxDecoration(
               border: Border.all(
-                color: isProcessing 
-                    ? Theme.of(context).colorScheme.primary 
+                color: isProcessing
+                    ? Theme.of(context).colorScheme.primary
                     : Colors.white.withValues(alpha: 0.5),
                 width: 3,
               ),
@@ -195,7 +200,10 @@ class _AddressReaderViewState extends State<_AddressReaderView> {
             child: isProcessing
                 ? Shimmer.fromColors(
                     baseColor: Colors.transparent,
-                    highlightColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
+                    highlightColor: Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withValues(alpha: 0.5),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -212,7 +220,9 @@ class _AddressReaderViewState extends State<_AddressReaderView> {
           right: 0,
           child: Center(
             child: Text(
-              isProcessing ? 'Analyzing Frame...' : 'Position address block in frame',
+              isProcessing
+                  ? 'Analyzing Frame...'
+                  : 'Position address block in frame',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,

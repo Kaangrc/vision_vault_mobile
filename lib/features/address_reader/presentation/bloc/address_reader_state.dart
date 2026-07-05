@@ -16,7 +16,6 @@ final class AddressReaderProcessing extends AddressReaderState {
 }
 
 final class AddressReaderSuccess extends AddressReaderState {
-
   const AddressReaderSuccess(this.addressText);
   final String addressText;
 
@@ -25,7 +24,6 @@ final class AddressReaderSuccess extends AddressReaderState {
 }
 
 final class AddressReaderFailure extends AddressReaderState {
-
   const AddressReaderFailure(this.message);
   final String message;
 

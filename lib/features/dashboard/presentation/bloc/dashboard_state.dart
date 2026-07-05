@@ -16,7 +16,6 @@ final class DashboardLoading extends DashboardState {
 }
 
 final class DashboardLive extends DashboardState {
-
   const DashboardLive({
     required this.activeScanners,
     required this.successRate,
@@ -29,7 +28,6 @@ final class DashboardLive extends DashboardState {
 }
 
 final class DashboardError extends DashboardState {
-
   const DashboardError(this.message);
   final String message;
 

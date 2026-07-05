@@ -3,7 +3,6 @@ import 'package:vision_vault_mobile/features/auth/domain/repositories/auth_repos
 import 'package:vision_vault_mobile/features/auth/presentation/bloc/auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-
   AuthCubit(this._repository) : super(const AuthInitial());
   final AuthRepository _repository;
 

@@ -37,7 +37,10 @@ class _ContactQrViewState extends State<ContactQrView> {
   }
 
   InputDecoration _buildInputDecoration(
-      BuildContext context, String label, IconData icon,) {
+    BuildContext context,
+    String label,
+    IconData icon,
+  ) {
     final theme = Theme.of(context);
     return InputDecoration(
       labelText: label,
@@ -80,7 +83,8 @@ class _ContactQrViewState extends State<ContactQrView> {
                   backgroundColor: Theme.of(context).colorScheme.error,
                   behavior: SnackBarBehavior.floating,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               );
             }
@@ -95,7 +99,10 @@ class _ContactQrViewState extends State<ContactQrView> {
                     TextField(
                       controller: _nameController,
                       decoration: _buildInputDecoration(
-                          context, 'Full Name', Icons.person,),
+                        context,
+                        'Full Name',
+                        Icons.person,
+                      ),
                       onChanged: (_) {
                         if (state is! QrInitial) {
                           context.read<QrGenerationCubit>().reset();
@@ -107,7 +114,10 @@ class _ContactQrViewState extends State<ContactQrView> {
                       controller: _phoneController,
                       keyboardType: TextInputType.phone,
                       decoration: _buildInputDecoration(
-                          context, 'Phone Number', Icons.phone,),
+                        context,
+                        'Phone Number',
+                        Icons.phone,
+                      ),
                       onChanged: (_) {
                         if (state is! QrInitial) {
                           context.read<QrGenerationCubit>().reset();
@@ -119,7 +129,10 @@ class _ContactQrViewState extends State<ContactQrView> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: _buildInputDecoration(
-                          context, 'Email (Optional)', Icons.email,),
+                        context,
+                        'Email (Optional)',
+                        Icons.email,
+                      ),
                       onChanged: (_) {
                         if (state is! QrInitial) {
                           context.read<QrGenerationCubit>().reset();
@@ -144,7 +157,9 @@ class _ContactQrViewState extends State<ContactQrView> {
                               height: 20,
                               width: 20,
                               child: CircularProgressIndicator(
-                                  strokeWidth: 2, color: Colors.white,),
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
                             )
                           : const Text('Generate Contact QR'),
                     ),

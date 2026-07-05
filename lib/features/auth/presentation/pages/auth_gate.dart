@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -5,7 +7,6 @@ import 'package:vision_vault_mobile/app/routes/app_routes.dart';
 import 'package:vision_vault_mobile/features/auth/data/repositories/local_auth_repository.dart';
 import 'package:vision_vault_mobile/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:vision_vault_mobile/features/auth/presentation/bloc/auth_state.dart';
-import 'dart:async';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
