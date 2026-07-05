@@ -48,7 +48,8 @@ class QrGeneratorPage extends StatelessWidget {
                 onTap: () => Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
-                      builder: (context) => const UrlQrPage()),
+                    builder: (context) => const UrlQrPage(),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -59,7 +60,8 @@ class QrGeneratorPage extends StatelessWidget {
                 onTap: () => Navigator.push<void>(
                   context,
                   MaterialPageRoute<void>(
-                      builder: (context) => const TextQrPage()),
+                    builder: (context) => const TextQrPage(),
+                  ),
                 ),
               ),
             ],
