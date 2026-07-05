@@ -12,9 +12,7 @@ The codebase adheres to a Feature-First Clean Architecture, ensuring clear bound
 
 *   **`app/`**: Contains core bootstrap configurations, including routing definitions, theme configurations, and application-level lifecycle observers.
 *   **`core/`**: Houses framework-agnostic shared utilities, base failure definitions, and functional error-handling constructs.
-*   **`features/`**: The modular core of the application. Each domain (`auth`, `dashboard`, `onboarding`, `plate_ocr`, `qr_management`) is an isolated vertical slice containing its own `data`, `domain`, and `presentation` directories.
-
-This structure ensures that external dependencies, such as the ML Kit SDK, remain isolated within data source implementations and do not leak into the domain or presentation layers.
+*   **`features/`**: The modular core of the application. The `plate_ocr`, `auth`, `address_reader`, and `dashboard` features are fully decoupled with their own `data`, `domain`, and `presentation` layers. Meanwhile, simpler structural elements like `home` and `onboarding` are implemented strictly as presentation-only modern UI slices to avoid unnecessary abstraction overhead.
 
 ## Key Engineering Patterns
 
@@ -28,7 +26,8 @@ This structure ensures that external dependencies, such as the ML Kit SDK, remai
 
 *   **Framework:** Flutter
 *   **State Management:** `flutter_bloc`
-*   **Hardware/Native Interop:** `camera`, `local_auth`, `shared_preferences`
+*   **Hardware/Native Interop:** `camera`, `local_auth`
+*   **Local Storage:** `shared_preferences`
 *   **Machine Learning:** Google ML Kit (`google_mlkit_text_recognition`, `google_mlkit_commons`)
 *   **Data Visualization:** `fl_chart`
 *   **Functional Programming:** `fpdart`
