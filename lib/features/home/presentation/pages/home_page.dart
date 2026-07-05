@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Enterprise Solutions'),
+        title: const Text('Vision Vault'),
         centerTitle: true,
         elevation: 0,
       ),
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             children: [
               const SizedBox(height: 16),
               Text(
-                'Available Services',
+                'Vision Vault',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

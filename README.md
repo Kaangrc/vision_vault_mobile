@@ -1,5 +1,7 @@
 # Vision Vault Mobile
 
+[![CI](https://github.com/Kaangrc/vision_vault_mobile/actions/workflows/flutter.yml/badge.svg)](https://github.com/Kaangrc/vision_vault_mobile/actions/workflows/flutter.yml)
+
 A pragmatic Flutter architecture showcase demonstrating practical implementations of Clean Architecture, strict static analysis, and modern state management.
 
 ## Project Overview

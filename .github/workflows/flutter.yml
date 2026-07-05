@@ -17,7 +17,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.19.0' # explicit version pinning
+          flutter-version: '3.41.4' # explicit version pinning
           cache: true # pub cache
           
           
