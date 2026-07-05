@@ -35,7 +35,7 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.generateTextQr('   '),
       expect: () => [
-        const QrGenerationFailure(errorMessage: 'Text cannot be empty'),
+        const QrGenerationFailure(errorMessage: 'Text field cannot be empty.'),
       ],
     );
 
@@ -55,7 +55,7 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.generateUrlQr('not a url'),
       expect: () => [
-        const QrGenerationFailure(errorMessage: 'Please enter a valid URL (e.g., https://example.com)'),
+        const QrGenerationFailure(errorMessage: 'Please enter a valid URL.'),
       ],
     );
   });

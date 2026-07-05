@@ -9,7 +9,9 @@ import 'package:vision_vault_mobile/features/plate_ocr/presentation/bloc/plate_o
 import 'package:vision_vault_mobile/features/plate_ocr/presentation/bloc/plate_ocr_state.dart';
 
 class MockPlateRepository extends Mock implements PlateRepository {}
+
 class FakeCameraImage extends Fake implements CameraImage {}
+
 class FakeCameraController extends Fake implements CameraController {}
 
 void main() {
@@ -49,7 +51,8 @@ void main() {
         const PlateOcrSuccess('34ABC123'),
       ],
       verify: (_) {
-        verify(() => mockRepository.scanPlate(fakeImage, fakeController)).called(1);
+        verify(() => mockRepository.scanPlate(fakeImage, fakeController))
+            .called(1);
       },
     );
 
@@ -70,8 +73,9 @@ void main() {
     blocTest<PlateOcrCubit, PlateOcrState>(
       'emits [PlateOcrProcessing, PlateOcrFailure] when repository returns failure',
       build: () {
-        when(() => mockRepository.scanPlate(any(), any()))
-            .thenAnswer((_) async => const Left(ServerFailure(message: 'Camera error')));
+        when(() => mockRepository.scanPlate(any(), any())).thenAnswer(
+          (_) async => const Left(ServerFailure(message: 'Camera error')),
+        );
         return cubit;
       },
       act: (cubit) => cubit.processCameraImage(fakeImage, fakeController),
